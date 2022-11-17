@@ -5,7 +5,7 @@ import 'package:instagram_clone_flutter/models/user.dart' as model;
 import 'package:instagram_clone_flutter/resources/storage_methods.dart';
 
 class AuthMethods {
-  final FirebaseFirestore _firestore = FirebaseFirestore.instance;
+  final FirebaseFirestore firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   //get user details
@@ -13,7 +13,7 @@ class AuthMethods {
     User currentUser = _auth.currentUser!;
 
     DocumentSnapshot documentSnapshot =
-        await _firestore.collection('users').doc(currentUser.uid).get();
+        await firestore.collection('users').doc(currentUser.uid).get();
 
     return model.User.fromSnap(documentSnapshot);
   }
@@ -32,8 +32,7 @@ class AuthMethods {
       if (email.isNotEmpty ||
           password.isNotEmpty ||
           username.isNotEmpty ||
-          bio.isNotEmpty ||
-          file != null) {
+          bio.isNotEmpty) {
         // registering user in auth with email and password
         UserCredential cred = await _auth.createUserWithEmailAndPassword(
           email: email,
@@ -43,7 +42,7 @@ class AuthMethods {
         String photoUrl = await StorageMethods()
             .uploadImageToStorage('profilePics', file, false);
 
-        model.User _user = model.User(
+        model.User user = model.User(
           username: username,
           uid: cred.user!.uid,
           photoUrl: photoUrl,
@@ -54,10 +53,10 @@ class AuthMethods {
         );
 
         // adding user in our database
-        await _firestore
-            .collection('users')
+        await firestore
+            .collection("users")
             .doc(cred.user!.uid)
-            .set(_user.toJson());
+            .set(user.toJson());
 
         res = "success";
       } else {

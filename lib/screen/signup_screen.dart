@@ -48,8 +48,8 @@ class _SignupScreenState extends State<SignupScreen> {
         username: _usernameController.text,
         bio: _bioController.text,
         file: _image!);
-    //if string returned is sucess, user has been created
-    if (res != 'success') {
+    //if string returned is success, user has been created
+    if (res != "success") {
       setState(() {
         _isLoading = false;
       });
@@ -66,7 +66,7 @@ class _SignupScreenState extends State<SignupScreen> {
       setState(() {
         _isLoading = false;
       });
-      // shoe the error
+      // show the error
       showSnackBar(context, res);
     }
   }
@@ -215,7 +215,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                     child: Container(
                       child: const Text(
-                        "Login.",
+                        'Login.',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),
@@ -224,7 +224,7 @@ class _SignupScreenState extends State<SignupScreen> {
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),

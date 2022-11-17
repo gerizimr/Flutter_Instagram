@@ -109,7 +109,7 @@ class FireStoreMethods {
           'followers': FieldValue.arrayRemove([uid])
         });
 
-        await _firestore.collection('users').doc(followId).update({
+        await _firestore.collection('users').doc(uid).update({
           'following': FieldValue.arrayRemove([followId])
         });
       } else {
@@ -117,7 +117,7 @@ class FireStoreMethods {
           'followers': FieldValue.arrayUnion([uid])
         });
 
-        await _firestore.collection('users').doc(followId).update({
+        await _firestore.collection('users').doc(uid).update({
           'following': FieldValue.arrayUnion([followId])
         });
       }

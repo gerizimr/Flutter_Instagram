@@ -3,12 +3,12 @@ import 'package:image_picker/image_picker.dart';
 
 //for picking up image from gallery
 pickImage(ImageSource source) async {
-  final ImagePicker _imagePicker = ImagePicker();
-  XFile? _file = await _imagePicker.pickImage(source: source);
-  if (_file != null) {
-    return await _file.readAsBytes();
+  final ImagePicker imagePicker = ImagePicker();
+  final XFile? file = await imagePicker.pickImage(source: source);
+  if (file != null) {
+    return await file.readAsBytes();
   }
-  print('No image selected');
+  //print('No image selected');
 }
 
 // for displaying snackbars
@@ -19,3 +19,4 @@ showSnackBar(BuildContext context, String text) {
     ),
   );
 }
+

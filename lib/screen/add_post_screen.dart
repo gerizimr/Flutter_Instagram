@@ -12,7 +12,7 @@ class AddPostScreen extends StatefulWidget {
   const AddPostScreen({Key? key}) : super(key: key);
 
   @override
-  _AddPostScreenState createState() => _AddPostScreenState();
+  State<AddPostScreen> createState() => _AddPostScreenState();
 }
 
 class _AddPostScreenState extends State<AddPostScreen> {
@@ -171,7 +171,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                       child: TextField(
                         controller: _descriptionController,
                         decoration: const InputDecoration(
-                            hintText: 'Write a caption...',
+                            hintText: "Write a caption...",
                             border: InputBorder.none),
                         maxLines: 8,
                       ),

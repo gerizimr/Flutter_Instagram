@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen> {
     });
     String res = await AuthMethods().loginUser(
         email: _emailController.text, password: _passwordController.text);
-    if (res == "success") {
+    if (res == 'success') {
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (context) => const ResponsiveLayout(
@@ -49,6 +49,9 @@ class _LoginScreenState extends State<LoginScreen> {
         _isLoading = false;
       });
     } else {
+      setState(() {
+        _isLoading = false;
+      });
       showSnackBar(context, res);
     }
   }
